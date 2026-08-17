@@ -6,4 +6,4 @@ const connectionString = process.env.DATABASE_URL!;
 
 // Disable prepare to work nicely with Supabase connection pooling
 export const client = postgres(connectionString, { prepare: false });
-export const serverDb = drizzle({ client, schema });
+export const serverDb = drizzle(client, { schema });

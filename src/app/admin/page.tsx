@@ -1,13 +1,25 @@
 import { serverDb } from '@/lib/db/postgres'
-import { slideshows } from '@/lib/db/schema'
-import { desc } from 'drizzle-orm'
+import { slideshows, settings } from '@/lib/db/schema'
+import { desc, eq } from 'drizzle-orm'
 import Link from 'next/link'
+import { AppOwnerForm } from '@/components/admin/AppOwnerForm'
 
 export default async function AdminPage() {
   const slides = await serverDb.select().from(slideshows).orderBy(desc(slideshows.createdAt))
+  
+  const appNameSetting = await serverDb
+    .select()
+    .from(settings)
+    .where(eq(settings.key, 'appName'))
+    .limit(1)
+    .catch(() => [])
+  
+  const currentAppName = appNameSetting.length > 0 ? appNameSetting[0].value : 'Quran'
 
   return (
     <div className="flex flex-col gap-6">
+      <AppOwnerForm initialValue={currentAppName} />
+
       <div className="flex justify-between items-center bg-card p-6 rounded-xl border border-border/50 shadow-sm">
         <div>
           <h2 className="text-2xl font-bold">Slideshow</h2>
