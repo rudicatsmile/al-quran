@@ -22,6 +22,7 @@ interface CachedSurah {
 }
 
 interface SearchIndex {
+  id?: string;
   surahNumber: number;
   ayatNumber: number;
   textTranslation: string;
@@ -31,7 +32,7 @@ const db = new Dexie('QuranDB') as Dexie & {
   bookmarks: EntityTable<Bookmark, 'id'>;
   history: EntityTable<ReadingHistory, 'id'>;
   surahCache: EntityTable<CachedSurah, 'surahNumber'>;
-  searchIndex: EntityTable<SearchIndex, 'surahNumber, ayatNumber'>; // composite primary key
+  searchIndex: EntityTable<SearchIndex, 'id'>;
 };
 
 // Schema declaration
@@ -39,7 +40,7 @@ db.version(1).stores({
   bookmarks: 'id, surahNumber, createdAt', // Indexed fields
   history: 'id, updatedAt',
   surahCache: 'surahNumber, cachedAt',
-  searchIndex: '[surahNumber+ayatNumber]', // Compound index for search
+  searchIndex: 'id, [surahNumber+ayatNumber]', // Compound index for search
 });
 
 export { db };
