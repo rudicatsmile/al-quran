@@ -3,6 +3,9 @@ import { slideshows, settings } from '@/lib/db/schema'
 import { desc, eq } from 'drizzle-orm'
 import Link from 'next/link'
 import { AppOwnerForm } from '@/components/admin/AppOwnerForm'
+import { revalidatePath } from 'next/cache'
+import { unlink } from 'fs/promises'
+import path from 'path'
 
 export default async function AdminPage() {
   const slides = await serverDb.select().from(slideshows).orderBy(desc(slideshows.createdAt))
@@ -15,6 +18,28 @@ export default async function AdminPage() {
     .catch(() => [])
   
   const currentAppName = appNameSetting.length > 0 ? appNameSetting[0].value : 'Quran'
+
+  async function deleteSlide(formData: FormData) {
+    "use server"
+    const id = parseInt(formData.get('id') as string)
+    const imageUrl = formData.get('imageUrl') as string
+    
+    if (id) {
+      await serverDb.delete(slideshows).where(eq(slideshows.id, id))
+      
+      if (imageUrl && imageUrl.startsWith('/uploads/')) {
+        const filePath = path.join(process.cwd(), 'public', imageUrl)
+        try {
+          await unlink(filePath)
+        } catch (e) {
+          // ignore error if file not found
+        }
+      }
+      
+      revalidatePath('/admin')
+      revalidatePath('/')
+    }
+  }
 
   return (
     <div className="flex flex-col gap-6">
@@ -40,7 +65,11 @@ export default async function AdminPage() {
                 <span className={`text-xs px-2 py-1 font-medium rounded-full ${slide.isActive ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-700'}`}>
                   {slide.isActive ? 'Aktif' : 'Tidak Aktif'}
                 </span>
-                <button className="text-destructive text-sm font-medium hover:underline">Hapus</button>
+                <form action={deleteSlide}>
+                  <input type="hidden" name="id" value={slide.id} />
+                  <input type="hidden" name="imageUrl" value={slide.imageUrl} />
+                  <button type="submit" className="text-destructive text-sm font-medium hover:underline cursor-pointer">Hapus</button>
+                </form>
               </div>
             </div>
           </div>

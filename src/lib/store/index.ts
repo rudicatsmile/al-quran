@@ -42,11 +42,13 @@ export const useAppStore = create<AppState>((set) => ({
 
 interface UserSettingsState {
   arabicFontSize: number
+  arabicFontFamily: string
   showTranslation: boolean
   showTransliteration: boolean
   defaultQari: string
 
   setArabicFontSize: (size: number) => void
+  setArabicFontFamily: (font: string) => void
   setShowTranslation: (show: boolean) => void
   setShowTransliteration: (show: boolean) => void
   setDefaultQari: (qari: string) => void
@@ -56,11 +58,13 @@ export const useUserSettingsStore = create<UserSettingsState>()(
   persist(
     (set) => ({
       arabicFontSize: 24,
+      arabicFontFamily: 'LPMQ Isep Misbah',
       showTranslation: true,
       showTransliteration: false,
       defaultQari: '01', // Default qari id for EQuran
 
       setArabicFontSize: (size) => set({ arabicFontSize: size }),
+      setArabicFontFamily: (font) => set({ arabicFontFamily: font }),
       setShowTranslation: (show) => set({ showTranslation: show }),
       setShowTransliteration: (show) => set({ showTransliteration: show }),
       setDefaultQari: (qari) => set({ defaultQari: qari }),

@@ -17,7 +17,7 @@ export default async function Home() {
     .where(eq(slideshows.isActive, true))
     .orderBy(desc(slideshows.orderIndex), desc(slideshows.createdAt))
     .catch(() => []) // Handle error safely
-    
+
   const appNameSetting = await serverDb
     .select()
     .from(settings)
@@ -33,10 +33,10 @@ export default async function Home() {
         <img src="/logo-yayasan.png" alt="Logo Yayasan" className="h-10 w-auto" />
         <div>
           <h1 className="text-xl font-bold leading-tight">{appName}</h1>
-          <p className="text-xs text-muted-foreground">Baca Al-Quran offline-first</p>
+          <p className="text-xs text-muted-foreground">Menebar Kebaikan Melalui Ayat Suci</p>
         </div>
       </header>
-      
+
       {slides.length > 0 && <Slideshow slides={slides} />}
 
       <div className="flex-1 w-full mt-2">

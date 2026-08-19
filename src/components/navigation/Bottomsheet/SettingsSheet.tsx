@@ -4,7 +4,9 @@ import { useAppStore, useUserSettingsStore } from '@/lib/store'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet'
 import { useTheme } from 'next-themes'
 import { Button } from '@/components/ui/button'
-import { Moon, Sun, Monitor, Check } from 'lucide-react'
+import { Switch } from '@/components/ui/switch'
+import { Slider } from '@/components/ui/slider'
+import { Moon, Sun, Monitor, Check, Type } from 'lucide-react'
 
 const qariList = [
   { id: '01', name: 'Abdullah Al-Juhany' },
@@ -14,10 +16,22 @@ const qariList = [
   { id: '05', name: 'Mishary Rashid Alafasy' },
 ]
 
+const fontList = [
+  { id: 'LPMQ Isep Misbah', name: 'LPMQ Isep Misbah (Kemenag)' },
+  { id: "'Amiri Quran', serif", name: 'Amiri Quran' },
+  { id: "system-ui, sans-serif", name: 'Sistem Default' },
+]
+
 export function SettingsSheet() {
   const { activeBottomsheet, closeBottomsheet } = useAppStore()
   const { theme, setTheme } = useTheme()
-  const { defaultQari, setDefaultQari } = useUserSettingsStore()
+  const { 
+    defaultQari, setDefaultQari,
+    showTranslation, setShowTranslation,
+    showTransliteration, setShowTransliteration,
+    arabicFontSize, setArabicFontSize,
+    arabicFontFamily, setArabicFontFamily
+  } = useUserSettingsStore()
 
   const isOpen = activeBottomsheet === 'settings'
 
@@ -58,6 +72,68 @@ export function SettingsSheet() {
                 <Monitor className="w-5 h-5" />
                 <span className="text-xs">Sistem</span>
               </Button>
+            </div>
+          </div>
+
+          {/* Tampilan Bacaan Section */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-foreground">Tampilan Bacaan</h3>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center justify-between">
+                <span className="text-sm">Tampilkan Latin</span>
+                <Switch 
+                  checked={showTransliteration} 
+                  onCheckedChange={setShowTransliteration} 
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm">Tampilkan Terjemahan</span>
+                <Switch 
+                  checked={showTranslation} 
+                  onCheckedChange={setShowTranslation} 
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Jenis Huruf Arab Section */}
+          <div className="space-y-3">
+            <h3 className="text-sm font-semibold text-foreground">Jenis Khat Arab</h3>
+            <div className="flex flex-col gap-2">
+              {fontList.map((font) => (
+                <button
+                  key={font.id}
+                  onClick={() => setArabicFontFamily(font.id)}
+                  className={`flex items-center justify-between p-3 rounded-lg border text-left transition-colors ${
+                    arabicFontFamily === font.id 
+                      ? 'bg-primary/10 border-primary text-primary font-medium shadow-sm' 
+                      : 'bg-card border-border/60 hover:bg-accent/50'
+                  }`}
+                >
+                  <span className="text-sm">{font.name}</span>
+                  {arabicFontFamily === font.id && <Check className="w-4 h-4" />}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Ukuran Huruf Arab Section */}
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-semibold text-foreground">Ukuran Huruf Arab</h3>
+              <span className="text-xs text-muted-foreground">{arabicFontSize}px</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <Type className="w-4 h-4 text-muted-foreground" />
+              <Slider 
+                value={[arabicFontSize]} 
+                onValueChange={(val) => setArabicFontSize(val[0])} 
+                min={18} 
+                max={48} 
+                step={2} 
+                className="flex-1"
+              />
+              <Type className="w-6 h-6 text-foreground" />
             </div>
           </div>
 

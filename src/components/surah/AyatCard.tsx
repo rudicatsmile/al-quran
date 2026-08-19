@@ -1,6 +1,6 @@
 import { Ayat } from '@/lib/api/equran'
 import { MoreVertical, Play, Pause, Bookmark as BookmarkIcon, BookmarkCheck } from 'lucide-react'
-import { useAppStore } from '@/lib/store'
+import { useAppStore, useUserSettingsStore } from '@/lib/store'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '@/lib/db'
 
@@ -11,6 +11,7 @@ interface AyatCardProps {
 
 export function AyatCard({ surahNumber, ayat }: AyatCardProps) {
   const { currentAudio, isPlaying, setIsPlaying, setCurrentAudio } = useAppStore()
+  const { showTranslation, showTransliteration, arabicFontSize, arabicFontFamily } = useUserSettingsStore()
 
   const isThisAyatPlaying = currentAudio?.surahNumber === surahNumber && currentAudio?.ayatNumber === ayat.nomorAyat
   
@@ -59,15 +60,17 @@ export function AyatCard({ surahNumber, ayat }: AyatCardProps) {
       </div>
       
       <div className="text-right mt-2" dir="rtl">
-        <p className="font-arabic text-3xl leading-relaxed text-foreground" style={{ lineHeight: '2.5' }}>
+        <p className="font-arabic leading-relaxed text-foreground" style={{ fontSize: `${arabicFontSize}px`, fontFamily: arabicFontFamily, lineHeight: '2.5' }}>
           {ayat.teksArab}
         </p>
       </div>
       
-      <div className="flex flex-col gap-1 mt-2">
-        <p className="text-sm text-primary font-medium">{ayat.teksLatin}</p>
-        <p className="text-sm text-muted-foreground">{ayat.teksIndonesia}</p>
-      </div>
+      {(showTransliteration || showTranslation) && (
+        <div className="flex flex-col gap-1 mt-2">
+          {showTransliteration && <p className="text-sm text-primary font-medium">{ayat.teksLatin}</p>}
+          {showTranslation && <p className="text-sm text-muted-foreground">{ayat.teksIndonesia}</p>}
+        </div>
+      )}
     </div>
   )
 }

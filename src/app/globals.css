@@ -1,6 +1,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&display=swap');
+
+@font-face {
+  font-family: 'LPMQ Isep Misbah';
+  src: url('/fonts/lpmq.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 @custom-variant dark (&:is(.dark *));
 
