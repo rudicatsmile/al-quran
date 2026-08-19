@@ -7,8 +7,6 @@ const withSerwist = withSerwistInit({
   disable: process.env.NODE_ENV === "development",
 });
 
-const nextConfig: NextConfig = {
-  output: process.env.MOBILE_BUILD ? 'export' : undefined,
-};
+const nextConfig: NextConfig = process.env.MOBILE_BUILD ? { output: 'export' } : {};
 
 export default withSerwist(nextConfig);
