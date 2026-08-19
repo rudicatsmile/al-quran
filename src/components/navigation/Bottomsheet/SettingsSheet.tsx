@@ -108,7 +108,7 @@ export function SettingsSheet() {
             {/* Jenis Huruf Arab Section */}
             <div className="space-y-2">
               <h3 className="text-sm font-semibold text-foreground">Jenis Khat Arab</h3>
-              <Select value={arabicFontFamily} onValueChange={setArabicFontFamily}>
+              <Select value={arabicFontFamily} onValueChange={(val) => { if (val) setArabicFontFamily(val) }}>
                 <SelectTrigger className="w-full h-11 bg-background">
                   <SelectValue placeholder="Pilih Font Arab" />
                 </SelectTrigger>
@@ -149,7 +149,7 @@ export function SettingsSheet() {
           <div className="bg-card border border-border/60 rounded-xl p-4 shadow-sm flex flex-col gap-2">
             <h3 className="text-sm font-semibold text-foreground">Pilih Suara Qari (Murottal)</h3>
             <p className="text-xs text-muted-foreground mb-1">Suara default untuk pemutaran ayat</p>
-            <Select value={defaultQari} onValueChange={setDefaultQari}>
+            <Select value={defaultQari} onValueChange={(val) => { if (val) setDefaultQari(val) }}>
               <SelectTrigger className="w-full h-11 bg-background">
                 <SelectValue placeholder="Pilih Qari" />
               </SelectTrigger>
