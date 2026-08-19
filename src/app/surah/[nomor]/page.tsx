@@ -2,6 +2,13 @@ import { AyatList } from '@/components/surah/AyatList'
 import { ChevronLeft } from 'lucide-react'
 import Link from 'next/link'
 
+export async function generateStaticParams() {
+  // Generate routes for all 114 surahs
+  return Array.from({ length: 114 }).map((_, i) => ({
+    nomor: (i + 1).toString(),
+  }))
+}
+
 export default async function SurahDetailPage({ params }: { params: Promise<{ nomor: string }> }) {
   const resolvedParams = await params;
   const nomor = parseInt(resolvedParams.nomor, 10);

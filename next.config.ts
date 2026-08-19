@@ -8,7 +8,7 @@ const withSerwist = withSerwistInit({
 });
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: process.env.MOBILE_BUILD ? 'export' : undefined,
 };
 
 export default withSerwist(nextConfig);
