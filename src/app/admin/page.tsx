@@ -4,8 +4,7 @@ import { desc, eq } from 'drizzle-orm'
 import Link from 'next/link'
 import { AppOwnerForm } from '@/components/admin/AppOwnerForm'
 import { revalidatePath } from 'next/cache'
-import { unlink } from 'fs/promises'
-import path from 'path'
+import { del } from '@vercel/blob'
 
 export default async function AdminPage() {
   const slides = await serverDb.select().from(slideshows).orderBy(desc(slideshows.createdAt))
@@ -27,10 +26,9 @@ export default async function AdminPage() {
     if (id) {
       await serverDb.delete(slideshows).where(eq(slideshows.id, id))
       
-      if (imageUrl && imageUrl.startsWith('/uploads/')) {
-        const filePath = path.join(process.cwd(), 'public', imageUrl)
+      if (imageUrl && imageUrl.includes('public.blob.vercel-storage.com')) {
         try {
-          await unlink(filePath)
+          await del(imageUrl)
         } catch (e) {
           // ignore error if file not found
         }

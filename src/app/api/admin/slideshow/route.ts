@@ -2,8 +2,7 @@ import { NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { serverDb } from '@/lib/db/postgres'
 import { slideshows } from '@/lib/db/schema'
-import { writeFile, access, mkdir } from 'fs/promises'
-import path from 'path'
+import { put } from '@vercel/blob'
 import crypto from 'crypto'
 
 export async function POST(request: Request) {
@@ -22,26 +21,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Gambar dibutuhkan' }, { status: 400 })
     }
 
-    // Convert file to buffer
-    const buffer = Buffer.from(await file.arrayBuffer())
-    
     // Generate unique filename
     const ext = file.name.split('.').pop()
-    const filename = `${crypto.randomUUID()}.${ext}`
+    const filename = `slideshows/${crypto.randomUUID()}.${ext}`
     
-    // Set upload directory to public/uploads
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads')
-    
-    // Create directory if it doesn't exist
-    try {
-      await access(uploadDir)
-    } catch {
-      await mkdir(uploadDir, { recursive: true })
-    }
-
-    // Write file to public/uploads
-    await writeFile(path.join(uploadDir, filename), buffer)
-    const imageUrl = `/uploads/${filename}`
+    // Upload to Vercel Blob
+    const blob = await put(filename, file, { access: 'public' })
+    const imageUrl = blob.url
 
     // Save to database
     await serverDb.insert(slideshows).values({
