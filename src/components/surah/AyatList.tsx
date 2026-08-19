@@ -1,5 +1,7 @@
 "use client"
 
+import { useEffect } from 'react'
+import { db } from '@/lib/db'
 import { useSurahDetail } from '@/hooks/useSurahDetail'
 import { AyatCard } from './AyatCard'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -13,6 +15,26 @@ export function AyatList({ nomor }: { nomor: number }) {
     estimateSize: () => 200, // Estimate height
     overscan: 3,
   })
+
+  useEffect(() => {
+    if (surah) {
+      db.history.get(nomor.toString()).then(existing => {
+        if (!existing) {
+          db.history.put({
+            id: nomor.toString(),
+            surahNumber: nomor,
+            ayatNumber: 1,
+            updatedAt: new Date().toISOString()
+          })
+        } else {
+           db.history.put({
+             ...existing,
+             updatedAt: new Date().toISOString()
+           })
+        }
+      }).catch(err => console.error(err))
+    }
+  }, [surah, nomor])
 
   if (isLoading) {
     return (

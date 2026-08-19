@@ -18,12 +18,23 @@ export function AyatCard({ surahNumber, ayat }: AyatCardProps) {
   const bookmarkId = `${surahNumber}-${ayat.nomorAyat}`
   const isBookmarked = useLiveQuery(() => db.bookmarks.get(bookmarkId), [bookmarkId])
   
-  const handlePlay = () => {
+  const handlePlay = async () => {
     if (isThisAyatPlaying) {
       setIsPlaying(!isPlaying)
     } else {
       setCurrentAudio({ surahNumber, ayatNumber: ayat.nomorAyat })
       setIsPlaying(true)
+      
+      try {
+        await db.history.put({
+          id: surahNumber.toString(),
+          surahNumber,
+          ayatNumber: ayat.nomorAyat,
+          updatedAt: new Date().toISOString()
+        })
+      } catch (err) {
+        console.error("Failed to save history", err)
+      }
     }
   }
 
