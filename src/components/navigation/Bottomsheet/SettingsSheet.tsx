@@ -127,7 +127,7 @@ export function SettingsSheet() {
               <Type className="w-4 h-4 text-muted-foreground" />
               <Slider 
                 value={[arabicFontSize]} 
-                onValueChange={(val) => setArabicFontSize(val[0])} 
+                onValueChange={(val) => setArabicFontSize(Array.isArray(val) ? val[0] : val)} 
                 min={18} 
                 max={48} 
                 step={2} 
