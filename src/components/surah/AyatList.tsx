@@ -7,8 +7,12 @@ import { AyatCard } from './AyatCard'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useWindowVirtualizer } from '@tanstack/react-virtual'
 
-export function AyatList({ nomor }: { nomor: number }) {
-  const { data: surah, isLoading, error } = useSurahDetail(nomor)
+import type { SurahDetail } from '@/lib/api/equran'
+
+import { AyatAudioPlayer } from './AyatAudioPlayer'
+
+export function AyatList({ nomor, initialData }: { nomor: number, initialData?: SurahDetail }) {
+  const { data: surah, isLoading, error } = useSurahDetail(nomor, initialData)
 
   const virtualizer = useWindowVirtualizer({
     count: surah?.ayat?.length ?? 0,
@@ -51,23 +55,30 @@ export function AyatList({ nomor }: { nomor: number }) {
   }
 
   return (
-    <div className="relative w-full" style={{ height: virtualizer.getTotalSize() }}>
-      {virtualizer.getVirtualItems().map((virtualItem) => {
-        const ayat = surah.ayat[virtualItem.index]
-        return (
-          <div
-            key={ayat.nomorAyat}
-            data-index={virtualItem.index}
-            ref={virtualizer.measureElement}
-            className="absolute top-0 left-0 w-full"
-            style={{
-              transform: `translateY(${virtualItem.start}px)`,
-            }}
-          >
-            <AyatCard surahNumber={nomor} ayat={ayat} />
-          </div>
-        )
-      })}
-    </div>
+    <>
+      <div className="relative w-full" style={{ height: virtualizer.getTotalSize() }}>
+        {virtualizer.getVirtualItems().map((virtualItem) => {
+          const ayat = surah.ayat[virtualItem.index]
+          return (
+            <div
+              key={ayat.nomorAyat}
+              data-index={virtualItem.index}
+              ref={(el) => {
+                if (el) {
+                  queueMicrotask(() => virtualizer.measureElement(el));
+                }
+              }}
+              className="absolute top-0 left-0 w-full"
+              style={{
+                transform: `translateY(${virtualItem.start}px)`,
+              }}
+            >
+              <AyatCard surahNumber={nomor} ayat={ayat} />
+            </div>
+          )
+        })}
+      </div>
+      <AyatAudioPlayer surah={surah} />
+    </>
   )
 }

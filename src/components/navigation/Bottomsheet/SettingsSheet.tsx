@@ -30,6 +30,7 @@ export function SettingsSheet() {
     defaultQari, setDefaultQari,
     showTranslation, setShowTranslation,
     showTransliteration, setShowTransliteration,
+    isTahfizhMode, setIsTahfizhMode,
     arabicFontSize, setArabicFontSize,
     arabicFontFamily, setArabicFontFamily
   } = useUserSettingsStore()
@@ -85,6 +86,16 @@ export function SettingsSheet() {
             <div className="space-y-4">
               <h3 className="text-sm font-semibold text-foreground">Tampilan Bacaan</h3>
               <div className="flex flex-col gap-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col">
+                    <span className="text-sm font-medium">Mode Hafalan (Tahfizh)</span>
+                    <span className="text-xs text-muted-foreground">Samarkan teks untuk tes hafalan</span>
+                  </div>
+                  <Switch 
+                    checked={isTahfizhMode} 
+                    onCheckedChange={setIsTahfizhMode} 
+                  />
+                </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">Tampilkan Latin</span>
                   <Switch 
@@ -151,7 +162,9 @@ export function SettingsSheet() {
             <p className="text-xs text-muted-foreground mb-1">Suara default untuk pemutaran ayat</p>
             <Select value={defaultQari} onValueChange={(val) => { if (val) setDefaultQari(val) }}>
               <SelectTrigger className="w-full h-11 bg-background">
-                <SelectValue placeholder="Pilih Qari" />
+                <SelectValue placeholder="Pilih Qari">
+                  {qariList.find(q => q.id === defaultQari)?.name || "Pilih Qari"}
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {qariList.map((qari) => (

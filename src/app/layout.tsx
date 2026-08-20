@@ -9,6 +9,7 @@ import { BottomNav } from "@/components/navigation/BottomNav";
 import { Drawer } from "@/components/navigation/Drawer";
 import { MiniPlayer } from "@/components/audio/MiniPlayer";
 import { SettingsSheet } from "@/components/navigation/Bottomsheet/SettingsSheet";
+import { TafsirSheet } from "@/components/navigation/Bottomsheet/TafsirSheet";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <main className="flex-1 pb-16">{children}</main>
               <Drawer />
               <SettingsSheet />
+              <TafsirSheet />
               <MiniPlayer />
               <BottomNav />
             </div>

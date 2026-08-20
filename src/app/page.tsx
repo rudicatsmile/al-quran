@@ -1,5 +1,7 @@
 import { SurahList } from '@/components/surah/SurahList'
 import { Slideshow } from '@/components/home/Slideshow'
+import { ContinueReadingCard } from '@/components/home/ContinueReadingCard'
+import { PrayerTimesCard } from '@/components/home/PrayerTimesCard'
 import { serverDb } from '@/lib/db/postgres'
 import { slideshows, settings } from '@/lib/db/schema'
 import { desc, eq } from 'drizzle-orm'
@@ -28,7 +30,7 @@ export default async function Home() {
   const appName = appNameSetting.length > 0 ? appNameSetting[0].value : 'Quran'
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full pb-6">
       <header className="sticky top-0 z-40 w-full bg-background/80 backdrop-blur-md border-b border-border/50 px-4 py-3 flex items-center gap-3">
         <img src="/logo-yayasan.png" alt="Logo Yayasan" className="h-10 w-auto" />
         <div>
@@ -38,6 +40,9 @@ export default async function Home() {
       </header>
 
       {slides.length > 0 && <Slideshow slides={slides} />}
+
+      <PrayerTimesCard />
+      <ContinueReadingCard />
 
       <div className="flex-1 w-full mt-2">
         <SurahList />

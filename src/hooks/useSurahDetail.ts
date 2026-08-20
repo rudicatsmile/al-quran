@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { equranApi, type SurahDetail } from '@/lib/api/equran'
 import { db } from '@/lib/db'
 
-export function useSurahDetail(nomor: number) {
+export function useSurahDetail(nomor: number, initialData?: SurahDetail) {
   return useQuery({
     queryKey: ['surah', 'detail', nomor],
     queryFn: async () => {
@@ -24,5 +24,6 @@ export function useSurahDetail(nomor: number) {
         throw error; // If no cache, throw
       }
     },
+    initialData,
   })
 }
