@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "title": "Pengantar Al-Fatihah",
+    "arabic": "اِلَى حَضَرَةِ النَّبِيِّ الْمُصْطَفَى صَلَّى اللهُ عَلَيهِ وَسَلَّمَ، وَاَلِهِ وَاَصْحَابِهِ وَشَيْءٌ لِلّٰهِ لَهُمُ الْفَاتِحَةُ",
+    "transliteration": "Ilaa hadharatin nabiyyil musthofaa shollallahu 'alaihi wa sallam, wa aalihi wa ash haabihi wa syai-un lillahi lahumul faatihah.",
+    "translation": "Kepada yang terhormat Nabi Muhammad SAW, segenap keluarga, dan para sahabatnya. Bacaan Al-Fatihah ini kami tujukan kepada Allah dan pahalanya untuk mereka. Al-Fatihah."
+  },
+  {
+    "id": 2,
+    "title": "Surat Al-Fatihah",
+    "arabic": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ. اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَ. الرَّحْمٰنِ الرَّحِيْمِ. مٰلِكِ يَوْمِ الدِّيْنِ. اِيَّاكَ نَعْبُدُ وَاِيَّاكَ نَسْتَعِيْنُ. اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ. صِرَاطَ الَّذِيْنَ اَنْعَمْتَ عَلَيْهِمْ ەۙ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّاۤلِّيْنَ.",
+    "transliteration": "Bismillahir-rahmanir-rahim. Al-hamdu lillahi rabbil-'alamin. Ar-rahmanir-rahim. Maliki yaumid-din. Iyyaka na'budu wa iyyaka nasta'in. Ihdinas-siratal-mustaqim. Siratal-lazina an'amta 'alaihim, ghairil-maghdubi 'alaihim wa lad-dallin.",
+    "translation": "Dengan nama Allah Yang Maha Pengasih, Maha Penyayang. Segala puji bagi Allah, Tuhan seluruh alam, Yang Maha Pengasih, Maha Penyayang, Pemilik hari pembalasan. Hanya kepada Engkaulah kami menyembah dan hanya kepada Engkaulah kami mohon pertolongan. Tunjukilah kami jalan yang lurus, (yaitu) jalan orang-orang yang telah Engkau beri nikmat kepadanya; bukan (jalan) mereka yang dimurkai, dan bukan (pula jalan) mereka yang sesat."
+  },
+  {
+    "id": 3,
+    "title": "Surat Al-Ikhlas",
+    "arabic": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ. قُلْ هُوَ اللّٰهُ اَحَدٌ. اَللّٰهُ الصَّمَدُ. لَمْ يَلِدْ وَلَمْ يُوْلَدْ. وَلَمْ يَكُنْ لَّهٗ كُفُوًا اَحَدٌ.",
+    "transliteration": "Bismillahir-rahmanir-rahim. Qul huwallahu ahad. Allahus-samad. Lam yalid wa lam yulad. Wa lam yakul lahu kufuwan ahad.",
+    "translation": "Dengan nama Allah Yang Maha Pengasih, Maha Penyayang. Katakanlah (Muhammad), 'Dialah Allah, Yang Maha Esa. Allah tempat meminta segala sesuatu. (Allah) tidak beranak dan tidak pula diperanakkan. Dan tidak ada sesuatu yang setara dengan Dia.'"
+  },
+  {
+    "id": 4,
+    "title": "Tahlil & Takbir",
+    "arabic": "لَا اِلٰهَ اِلَّا اللهُ وَاللهُ اَكْبَرُ",
+    "transliteration": "Laa ilaaha illallahu wallahu akbar.",
+    "translation": "Tiada Tuhan selain Allah, Allah Maha Besar."
+  },
+  {
+    "id": 5,
+    "title": "Tahlil 33x",
+    "arabic": "لَا اِلٰهَ اِلَّا اللهُ",
+    "transliteration": "Laa ilaaha illallah.",
+    "translation": "Tiada Tuhan selain Allah."
+  }
+]

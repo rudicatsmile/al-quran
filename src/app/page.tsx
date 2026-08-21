@@ -2,6 +2,7 @@ import { SurahList } from '@/components/surah/SurahList'
 import { Slideshow } from '@/components/home/Slideshow'
 import { ContinueReadingCard } from '@/components/home/ContinueReadingCard'
 import { PrayerTimesCard } from '@/components/home/PrayerTimesCard'
+import { QuickAccessMenu } from '@/components/home/QuickAccessMenu'
 import { serverDb } from '@/lib/db/postgres'
 import { slideshows, settings } from '@/lib/db/schema'
 import { desc, eq } from 'drizzle-orm'
@@ -40,6 +41,8 @@ export default async function Home() {
       </header>
 
       {slides.length > 0 && <Slideshow slides={slides} />}
+
+      <QuickAccessMenu />
 
       <PrayerTimesCard />
       <ContinueReadingCard />

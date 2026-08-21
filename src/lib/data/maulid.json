@@ -1,0 +1,22 @@
+[
+  {
+    "id": "barzanji",
+    "title": "Maulid Barzanji",
+    "description": "Karya Syekh Ja'far Al-Barzanji"
+  },
+  {
+    "id": "simthud-durar",
+    "title": "Maulid Simthud Durar",
+    "description": "Karya Habib Ali bin Muhammad Al-Habsyi"
+  },
+  {
+    "id": "burdah",
+    "title": "Qasidah Burdah",
+    "description": "Karya Imam Al-Bushiri"
+  },
+  {
+    "id": "dibai",
+    "title": "Maulid Diba'i",
+    "description": "Karya Imam Abdurrahman Ad-Diba'i"
+  }
+]

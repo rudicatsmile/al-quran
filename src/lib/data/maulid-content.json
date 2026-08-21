@@ -1,0 +1,38 @@
+{
+  "barzanji": [
+    {
+      "id": 1,
+      "title": "Pasal 1 (Abtadiul Imla')",
+      "arabic": "أَبْتَدِئُ اْلإِمْلاَءَ بِاسْمِ الذَّاتِ الْعَلِيَّةِ، مُسْتَدِرًّا فَيْضَ الْبَرَكَاتِ عَلَى مَا أَنَالَهُ وَأَوْلاَهُ. وَأُثَنِّيْ بِحَمْدٍ مَوَارِدُهُ سَائِغَةٌ هَنِيَّةٌ...",
+      "transliteration": "Abtadi-ul imlaa-a bismidz-dzaatil 'aliyyah, mustadirran faidl-al barakaati 'alaa maa anaalahu wa awlaahu. Wa utsannii bihamdin mawaariduhu saa-ighatun haniyyah...",
+      "translation": "Aku memulai penulisan ini dengan menyebut nama Dzat Yang Maha Tinggi, seraya memohon curahan keberkahan atas apa yang telah Dia anugerahkan dan karuniakan. Dan aku iringi dengan pujian yang sumbernya lezat dan menyegarkan..."
+    }
+  ],
+  "simthud-durar": [
+    {
+      "id": 1,
+      "title": "Pasal 1 (Ya Robbi Sholli)",
+      "arabic": "يَا رَبِّ صَلِّ عَلَى مُحَمَّدْ، مَا لاَحَ بَرْقٌ فِى اْلأَبَاطِحْ...",
+      "transliteration": "Ya robbi sholli 'alaa Muhammad, maa laaha barqun fil abaathih...",
+      "translation": "Ya Tuhanku, limpahkanlah rahmat kepada Nabi Muhammad, selama kilat masih menyambar di lembah-lembah..."
+    }
+  ],
+  "burdah": [
+    {
+      "id": 1,
+      "title": "Pasal 1 (Mengingat Kekasih)",
+      "arabic": "أَمِنْ تَذَكُّرِ جِيْرَانٍ بِذِيْ سَلَمِ، مَزَجْتَ دَمْعًا جَرَى مِنْ مُقْلَةٍ بِدَمِ",
+      "transliteration": "Amin tadzakkuri jiranin bidzi salami, mazajta dam'an jara min muqlatin bidami.",
+      "translation": "Apakah karena teringat tetangga (kekasih) di Dzi Salam, engkau mencucurkan air mata yang bercampur darah?"
+    }
+  ],
+  "dibai": [
+    {
+      "id": 1,
+      "title": "Pasal 1 (Ya Robbi Sholli)",
+      "arabic": "يَا رَبِّ صَلِّ عَلَى مُحَمَّدْ، يَا رَبِّ صَلِّ عَلَيْهِ وَسَلِّمْ...",
+      "transliteration": "Ya robbi sholli 'alaa Muhammad, Ya robbi sholli 'alaihi wa sallim...",
+      "translation": "Ya Tuhanku, limpahkanlah rahmat kepada Nabi Muhammad, Ya Tuhanku, limpahkanlah rahmat dan kesejahteraan kepadanya..."
+    }
+  ]
+}
